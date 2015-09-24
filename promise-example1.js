@@ -10,7 +10,8 @@ var promise = new Promise(
       if (myRequest.status == 200){
         resolve(myRequest.responseText);
       } else {
-        reject(myRequest.statusText);
+        console.log(myRequest.responseText);
+        reject(myRequest.status);
       }
     };
     myRequest.onerror = function(){
@@ -19,9 +20,10 @@ var promise = new Promise(
     myRequest.send();
 
   });
+
 promise.then(
   function(data) {
-    console.log("Success: " + JSON.parse(data).value.joke);
+    console.log(JSON.parse(data).value.joke);
   },
   function(err){
     console.log(err);
